@@ -1,5 +1,5 @@
 function submit()
-  addpath('/lib');
+  addpath('./lib');
 
   conf.assignmentSlug = 'linear-regression';
   conf.itemName = 'Linear Regression with Multiple Variables';

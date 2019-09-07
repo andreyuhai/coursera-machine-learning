@@ -16,8 +16,8 @@ figure; hold on;
 pos = find(y);
 neg = find(y==0);
 
-plot(X(pos, 1), X(pos, 2), 'linewidth', 2, 'markersize', 7);
-plot(X(neg, 1), X(neg, 2), 'markerfacecolor', 'y', 'markersize', 7);
+plot(X(pos, 1), X(pos, 2), 'k+','linewidth', 2, 'markersize', 7);
+plot(X(neg, 1), X(neg, 2), 'ko', 'markerfacecolor', 'y', 'markersize', 7);
 legend(gca, 'Admitted', 'NotAdmitted');
 set(gca, 'xlabel', 'Exam 1 Score', 'ylabel', 'Exam 2 Score');
 

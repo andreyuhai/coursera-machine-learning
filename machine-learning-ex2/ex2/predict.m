@@ -17,7 +17,7 @@ p = zeros(m, 1);
 
 
 
-
+p = round(sigmoid(sum(theta' .* X, 2)));
 
 
 

@@ -22,12 +22,37 @@ grad = zeros(size(theta));
 
 J = 1 / (2 * m) * sum(((X * theta) - y) .^ 2) + (lambda / ( 2 * m)) * sum(theta(2:end) .^ 2);
 
-% When calculating grad
-% You need to update every grad according to its
-% corresponding vector column.
+% When we are calculating gradients,
+% we need to calculate every gradient with the index i in our gradient vector
+% according to its corresponding column i in our data matrix (X in this case).
+
+
+% Let's take below vector with the original values from X
+% into consideration
+
+%    X matrix      theta vector
+% [ 1 -15.9368 ]   [ thete_1 ]
+% [ 1 -29.1540 ]   [ theta_2 ]
+% [ 1 36.1895  ]
+% [ 1 37.4922  ]
+%
+% Since we do not regularize theta_0
+% gradient(1) will be sum of the column vector
+% evaluated by (X * theta) - y times the actual values of the corresponding column from matrix X, namely X(1).
+% Which is the first column of X in this case.
+
 grad(1) = (1 / m) * sum((X * theta) - y .* X(:,1));
+
+% We use regularization for the rest of our gradient calculations.
+% We just add the transpose of (lambda / m) times our theta values starting from 2nd index
+% to calculate sum of each column in our 
+
 grad(2:end) = (1 / m) * sum(((X * theta) - y) .* X(:, 2:end)) + ((lambda / m) * theta(2:end))'; 
 
+% [ sum(((X * theta) - y) .* X(:, 2:end))(1)	sum(((X * theta) - y) .* X(:, 2:end))(2)	... ]
+% [ theta(2)									theta(3)									... ]
+% ------------------------------------------------------------------------------------------------ +
+%
 
 % =========================================================================
 

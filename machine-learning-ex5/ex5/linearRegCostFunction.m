@@ -41,13 +41,13 @@ J = 1 / (2 * m) * sum(((X * theta) - y) .^ 2) + (lambda / ( 2 * m)) * sum(theta(
 % evaluated by (X * theta) - y times the actual values of the corresponding column from matrix X, namely X(1).
 % Which is the first column of X in this case.
 
-grad(1) = (1 / m) * sum((X * theta) - y .* X(:,1));
+grad(1) = (1 / m) * sum((X * theta) - y .* X(:,1), 1);
 
 % We use regularization for the rest of our gradient calculations.
 % We just add the transpose of (lambda / m) times our theta values starting from 2nd index
 % to calculate sum of each column in our 
 
-grad(2:end) = (1 / m) * sum(((X * theta) - y) .* X(:, 2:end)) + ((lambda / m) * theta(2:end))'; 
+grad(2:end) = (1 / m) * sum(((X * theta) - y) .* X(:, 2:end), 1) + ((lambda / m) * theta(2:end))'; 
 
 % [ sum(((X * theta) - y) .* X(:, 2:end))(1)	sum(((X * theta) - y) .* X(:, 2:end))(2)	... ]
 % [ theta(2)									theta(3)									... ]
